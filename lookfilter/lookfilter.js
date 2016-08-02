@@ -32,7 +32,6 @@
         }))
 
       $(element)
-        // don't neeed a header for now... OR DO WE!
         .append(
           $("<header></header>")
             .append(
