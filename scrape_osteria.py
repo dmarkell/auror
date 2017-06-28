@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 import codecs
+from datetime import datetime
 import json
 import re
 import requests
@@ -123,7 +124,10 @@ def _get_availability(opts):
 
 def get_config(opts):
 
-    print(json.dumps(_get_calendar_and_nonce()))
+    result = _get_calendar_and_nonce()
+    result['updated_at'] = datetime.now().strftime('%s')
+
+    print(json.dumps(result))
 
 def get_availability(opts):
 
