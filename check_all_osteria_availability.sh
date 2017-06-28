@@ -22,10 +22,10 @@ jq '.dates[]' |
 tr -d \" |
 parallel python scrape_osteria.py get_availability nonce="$nonce" date={} service=lunch  >> /tmp/"$TEMP_FILE"
 
-echo "Checked reservations "$(date)":" | python send_slack_notification.py
+# notify
 
+echo "Checked reservations "$(date)":" | python send_slack_notification.py
 cat /tmp/"$TEMP_FILE" |
-jq -c 'select(.data.response.TimesSlots != []) |'\
-'.data.availability_search' |
-head -2 |
+jq -c 'select(.data.response.TimeSlots != []) |'\
+'[.data.availability_search, .data.response.TimeSlots]' |
 python send_slack_notification.py
