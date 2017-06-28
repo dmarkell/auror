@@ -3,6 +3,10 @@
 CONFIG_FILE="osteria_config.json"
 TEMP_FILE="osteria_availability.json"
 
+if [[ -e /tmp/"$CONFIG_FILE" ]]
+    then time python scrape_osteria.py get_config > /tmp/"$CONFIG_FILE"
+fi
+
 nonce_age=$(echo $(date "+%s")" - "$(cat /tmp/"$CONFIG_FILE" | jq '.updated_at' | tr -d \") | bc)
 
 if [[ $nonce_age < 3600 ]]
