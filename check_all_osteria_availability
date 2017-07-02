@@ -3,8 +3,8 @@
 CONFIG_FILE="osteria_config.json"
 TEMP_FILE="osteria_availability.json"
 
-source /home/pi/python/bin/activate
-source /home/pi/env.sh
+source "$BASE_DIR"python/bin/activate
+source "$BASE_DIR"env.sh
 
 if [[ -e /tmp/"$CONFIG_FILE" ]]
     then time python "$AUROR_DIR"scrape_osteria.py get_config > /tmp/"$CONFIG_FILE"
