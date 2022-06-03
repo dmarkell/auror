@@ -5,6 +5,7 @@ import csv
 import json
 import sys
 # reload(sys)
+
 sys.stdin.reconfigure(encoding='ISO-8859-1')
 
 typer = json.loads(sys.argv[1]) if len(sys.argv) > 1 else {}
